@@ -40,7 +40,7 @@
 
         function save()
         {
-             $statement = $GLOBALS['DB']->query("INSERT INTO cuisine (type) VALUES ('{$this->getType}') RETURNING id;");
+             $statement = $GLOBALS['DB']->query("INSERT INTO cuisine (type) VALUES ('{$this->getType()}') RETURNING id;");
              $result = $statement->fetch(PDO::FETCH_ASSOC);
              $this->setTypeId($result['id']);
         }
@@ -54,10 +54,12 @@
                  $type = $food['type'];
                  $id = $food['id'];
                  $new_type = new Cuisine($type, $id);
-                 array_push($returned_type, $new_type);
-         }
-          return $cuisine;
+                 array_push($cuisine, $new_type);
+             }
+
+             return $cuisine;
         }
+
         static function deleteAll()
         {
                 $GLOBALS['DB']->exec("DELETE FROM cuisine *;");

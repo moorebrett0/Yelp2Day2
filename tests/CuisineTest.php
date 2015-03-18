@@ -32,6 +32,21 @@
                 $this->assertEquals($type, $result);
             }
 
+            function test_save()
+            {
+                //Arrange
+                $type = "AMERICAN";
+                $id = null;
+                $test_Cuisine = new Cuisine($type, $id);
+
+                //Act
+                $test_Cuisine->save();
+                $result = Cuisine::getAll();
+
+                //Assert
+                $this->assertEquals($test_Cuisine, $result[0]);    
+            }
+
 
 
 
