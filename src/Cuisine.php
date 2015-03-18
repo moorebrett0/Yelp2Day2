@@ -62,6 +62,18 @@
             return $restaurants;
         }
 
+        function update($new_type)
+        {
+            $GLOBALS['DB']->exec("UPDATE cuisine SET type = '{$new_type}' WHERE id = {$this->getTypeId()};");
+            $this->setType($new_type);
+        }
+
+        function delete()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM cuisine WHERE id = {$this->getTypeId()};");
+            $GLOBALS['DB']->exec("DELETE FROM restaurant WHERE cuisine_id = {$this->getTypeId()};");
+        }
+
         static function find($search_id)
         {
            $found_cuisine = null;

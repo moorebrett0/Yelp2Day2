@@ -135,8 +135,42 @@
                 $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
             }
 
+            function test_deleteCuisineRestaurants()
+            {
+                //Arange
+                $type = "Mexican";
+                $id = null;
+                $test_cuisine = new Cuisine($type, $id);
+                $test_cuisine->save();
+
+                $name = "Freddie Muchacho";
+                $cuisine_id = $test_cuisine->getTypeId();
+                $test_restaurant = new Restaurant($name, $id, $cuisine_id);
+                $test_restaurant->save();
+
+                //Act
+                $test_cuisine->delete();
+
+                //Assert
+                $this->assertEquals([], Restaurant::getAll());
+            }
 
 
+            function test_update()
+            {
+                //Arrange
+                $type = "Irish";
+                $id = null;
+                $test_cuisine = new Cuisine($type, $id);
+
+                $new_type = "Scandinavian";
+
+                //Act
+                $test_cuisine->update($new_type);
+
+                //Assert
+                $this->assertEquals("Scandinavian", $test_cuisine->getType());
+            }
         }
 
  ?>
