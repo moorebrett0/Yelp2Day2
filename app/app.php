@@ -14,6 +14,8 @@
             use Symfony\Component\HttpFoundation\Request;
             Request::enableHttpMethodParameterOverride();
 
+////////////////////////////////////////////////////////////
+
             //establish our route methods in index.twig
 
             $app->get("/", function() use ($app) {
@@ -21,33 +23,49 @@
                 return $app['twig']->render('index.twig', array('cuisine' => Cuisine::getAll()));
             });
 
-            $app->post("/cuisine", function() use ($app){
+            $app->post("/cuisines_add", function() use ($app){
 
-                $cuisine = new Cuisine($_POST);
+                $cuisine = new Cuisine($_POST['type']);
+                $cuisine->save();
 
-                return $app['twig']->render('index.twig');
+                return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
             });
 
-            $app->delete("/cuisine/{$id}", function($id) use ($app){
+            // $app->delete("/cuisine/{$id}", function($id) use ($app){
+            //
+            //     $cuisine = Cuisine::find($id);
+            //     $cuisine->delete();
+            //     return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
+            // });
 
-                $cuisine = Cuisine::find($id);
-                $cuisine->delete();
-                return $app['twig']->render('index.twig', array('categories' => Cuisine::getAll()));
+            $app->post("/delete_cuisines", function() use($app){
+
+                Cuisine::deleteAll();
+                return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
             });
 
             //establish our routes and methods for cuisine twig pages
 
-            $app->get("/cuisines", function() use ($app) {
+            $app->get("/cuisines/{id}", function($id) use ($app) {
 
-                return $app['twig']->render('cuisines.twig', array('cuisines' => Cuisine::getAll()));
+                $cuisine = Cuisine::find($id);
+
+                return $app['twig']->render('cuisine.twig', array('cuisines'=> $cuisine, 'restaurants' => $cuisine->getRestaurant()));
             });
 
-            $app->post("/cuisines", function() use ($app) {
+            $app->post("/restaurant_add", function() use ($app) {
 
                 $cuisine = new Cuisine($_POST['type']);
                 $cuisine->save();
-                return $app['twig']->render('cuisines.twig', array('cuisines' => Cuisine::getAll()));
+                return $app['twig']->render('restaurants.twig', array('cuisines'=> Restaurant::getAll()));
             });
+
+
+
+
+
+
+
 
             //establish our routes and methods for restaurant twig pages
 

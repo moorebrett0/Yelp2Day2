@@ -22,11 +22,14 @@
 
         <h4>Add a restaurant</h4>
 
-        <form action='/restaurants' method='post'>
+        <form action='/restaurant_add' method='post'>
             <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getTypeId() }}">
             <label for='name'>Restaurant Name</label>
             <input id='name' name='name' type='text'>
-
+            <label for='rating'>Rate it</label>
+            <input type='range' name='rating' min='1' max='5'>
+            <label for='review'>Review it</label>
+            <textarea name='review' cols='25' rows='5'>Enter your Review here</textarea>
 
             <button type='submit'>Add restaurant</button>
         </form>

@@ -9,11 +9,11 @@
 
         <p>Create a new cuisine:</p>
 
-        <form action="/cuisines" method="post">
+        <form action="/cuisines_add" method="post">
           <label for="type">Cuisine name:</label>
           <input id="type" name="type" type="text">
 
-          <button type="submit">Add cuisine</button>
+          <button type="submit">Add cuisine!</button>
         </form>
 
         {% if cuisines is not empty %}
