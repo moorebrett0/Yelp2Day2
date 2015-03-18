@@ -38,6 +38,7 @@
 
     // methods to interact with databse
 
+
         function save()
         {
              $statement = $GLOBALS['DB']->query("INSERT INTO cuisine (type) VALUES ('{$this->getType()}') RETURNING id;");
@@ -45,6 +46,18 @@
              $this->setTypeId($result['id']);
         }
 
+        static function find($search_id)
+        {
+           $found_cuisine = null;
+           $cuisine = Cuisine::getAll();
+           foreach($cuisine as $food) {
+               $type_id = $food->getTypeId();
+               if ($type_id == $search_id) {
+                   $found_cuisine = $food;
+               }
+           }
+           return $found_cuisine;
+        }
 
         static function getAll()
         {

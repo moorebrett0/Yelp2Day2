@@ -66,6 +66,47 @@
                 $this->assertEquals([$test_Cuisine, $test_Cuisine2], $result);
             }
 
+            function test_deleteAll()
+            {
+                //Arrange
+                $type = "AMERICAN";
+                $id = null;
+                $test_Cuisine = new Cuisine($type, $id);
+                $type2 = "Sicilian";
+                $test_Cuisine2 = new Cuisine($type, $id);
+
+                //Act
+                $test_Cuisine->save();
+                $test_Cuisine2->save();
+
+                Cuisine::deleteAll();
+                $result = Cuisine::getAll();
+
+                //Assert
+                $this->assertEquals([], $result);
+            }
+
+            function test_find()
+            {
+                //Arrange
+                $type = "french";
+                $id = 1;
+                $type2 = "german";
+                $id2 = 2;
+
+                $test_cuisine = new Cuisine($type, $id);
+                $test_cuisine->save();
+                $test_cuisine2 = new Cuisine($type2, $id2);
+                $test_cuisine2->save();
+
+                //Act
+                $result = Cuisine::find($test_cuisine2->getTypeId());
+
+                //Assert
+                $this->assertEquals($test_cuisine2, $result);
+            }
+
+
 
 
 
