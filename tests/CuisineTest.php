@@ -106,7 +106,34 @@
                 $this->assertEquals($test_cuisine2, $result);
             }
 
+            function testGetResurant()
+            {
+                $type = "mexican";
+                $id = null;
+                $test_cuisine = new Cuisine($type, $id);
+                $test_cuisine->save();
 
+                $test_cuisine_id = $test_cuisine->getTypeId();
+
+                $name = "puerto vallarta";
+                $review = "taco tuesday rocks!";
+                $rating = 5;
+
+                $test_resturant = new Resturant($name, $id, $test_cuisine_id, $rating, $review);
+                $test_resturant->save();
+
+                $name2 = "jose tacos";
+                $review2 = "had the runs for 4 days.";
+                $rating2 = 1;
+                $test_resturant2 = new Resturant($name2, $id, $test_cuisine_id, $rating2, $review2);
+                $test_resturant2->save();
+
+                //act
+                $result = $test_cuisine->getResturant();
+
+                //assert
+                $this->assertEquals([$test_resturant, $test_resturant2], $result);
+            }
 
 
 
