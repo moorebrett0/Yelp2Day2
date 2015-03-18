@@ -46,20 +46,20 @@
              $this->setTypeId($result['id']);
         }
 
-        function getResturant()
+        function getRestaurant()
         {
-            $resturants = array();
-            $returned_name = $GLOBALS['DB']->query("SELECT * FROM resturant WHERE cuisine_id = {$this->getTypeId()};");
+            $restaurants = array();
+            $returned_name = $GLOBALS['DB']->query("SELECT * FROM restaurant WHERE cuisine_id = {$this->getTypeId()};");
             foreach($returned_name as $place) {
                 $name = $place['name'];
                 $id = $place['id'];
                 $cuisine_id = $place['cuisine_id'];
                 $rating = $place['rating'];
                 $review = $place['review'];
-                $new_resturant = new Resturant($name, $id, $cuisine_id, $rating, $review);
-                array_push($resturants, $new_resturant);
+                $new_restaurant = new Restaurant($name, $id, $cuisine_id, $rating, $review);
+                array_push($restaurants, $new_restaurant);
             }
-            return $resturants;
+            return $restaurants;
         }
 
         static function find($search_id)

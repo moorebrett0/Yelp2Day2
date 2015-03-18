@@ -5,7 +5,7 @@
         * @backupStaticAttributes disabled
         */
 
-        require_once "src/Resturant.php";
+        require_once "src/Restaurant.php";
         require_once "src/Cuisine.php";
 
         $DB = new PDO('pgsql:host=localhost;dbname=yelp2_test');
@@ -15,7 +15,7 @@
             protected function tearDown()
             {
                 Cuisine::deleteAll();
-                Resturant::deleteAll();
+                Restaurant::deleteAll();
             }
 
             function test_getType()
@@ -119,20 +119,20 @@
                 $review = "taco tuesday rocks!";
                 $rating = 5;
 
-                $test_resturant = new Resturant($name, $id, $test_cuisine_id, $rating, $review);
-                $test_resturant->save();
+                $test_restaurant = new Restaurant($name, $id, $test_cuisine_id, $rating, $review);
+                $test_restaurant->save();
 
                 $name2 = "jose tacos";
                 $review2 = "had the runs for 4 days.";
                 $rating2 = 1;
-                $test_resturant2 = new Resturant($name2, $id, $test_cuisine_id, $rating2, $review2);
-                $test_resturant2->save();
+                $test_restaurant2 = new Restaurant($name2, $id, $test_cuisine_id, $rating2, $review2);
+                $test_restaurant2->save();
 
                 //act
-                $result = $test_cuisine->getResturant();
+                $result = $test_cuisine->getRestaurant();
 
                 //assert
-                $this->assertEquals([$test_resturant, $test_resturant2], $result);
+                $this->assertEquals([$test_restaurant, $test_restaurant2], $result);
             }
 
 
