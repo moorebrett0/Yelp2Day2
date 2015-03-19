@@ -83,39 +83,15 @@
 
 
 
+            $app->delete("/cuisines/{id}", function($id) use ($app) {
+
+                $cuisine = Cuisine::find($id);
+                $cuisine->delete();
+                return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
+            });
 
 
 
-
-            //
-            // // $app->delete("/cuisine/{$id}", function($id) use ($app) {
-            // //
-            // //     $cuisine = Cuisine::find($id);
-            // //     $cuisine->delete();
-            // //     return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
-            // // });
-            //
-
-            // //establish our routes and methods for restaurant twig pages
-            //
-            // $app->get("/restaurants", function() use ($app) {
-            //     return $app['twig']->render('restaurants.twig', array('restaurants' => Restaurant::getAll()));
-            // });
-            //
-            // $app->post("/restaurants", function() use ($app) {
-            //     $restaurant = new Restaurant($_POST['name'], $_POST['rating'], $_POST['review']);
-            //     $restaurant->save();
-            //     return $app['twig']->render('restaurants.twig', array('restaurants' => Restaurant::getAll()));
-            // });
-            //
-            // //establish route to edit twig pages
-            //
-            // $app->get("/cuisines/{id}/edit", function($id) use ($app) {
-            //
-            //     $cuisine = Cuisine::find($id);
-            //     return $app['twig']->render('cuisine_edit.html.twig', array('cuisine' => $cuisine));
-            // });
-            //
 
 
 
