@@ -6,7 +6,8 @@
     </head>
     <body>
         <div class="container">
-        <h1>{{ cuisines.getType }}</h1>
+        <h1>Your chosen cuisine is: {{ cuisines.getType }}</h1>
+        <p><a href="/cuisines/{{ cuisines.getTypeId }}/edit">Edit cuisines</a></p>
 
         {% if restaurants is not empty %}
             <p>Here are the Restaurants:</p>
@@ -15,15 +16,17 @@
                     <li>{{ place.getName }}</li>
                 {% endfor %}
             </ul>
+
             <form action='/delete_restaurants' method='post'>
                 <button type='submit'>Clear restaurants</button>
             </form>
+
         {% endif %}
 
         <h4>Add a restaurant</h4>
 
         <form action='/restaurant_add' method='post'>
-            <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getTypeId() }}">
+            <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisines.getTypeId() }}">
             <label for='name'>Restaurant Name</label>
             <input id='name' name='name' type='text'>
             <label for='rating'>Rate it</label>

@@ -101,7 +101,7 @@
               $GLOBALS['DB']->exec("DELETE FROM restaurant *;");
             }
 
-    
+
 
 
 

@@ -49,8 +49,8 @@
         function getRestaurant()
         {
             $restaurants = array();
-            $returned_name = $GLOBALS['DB']->query("SELECT * FROM restaurant WHERE cuisine_id = {$this->getTypeId()};");
-            foreach($returned_name as $place) {
+            $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant WHERE cuisine_id = {$this->getTypeId()};");
+            foreach($returned_restaurants as $place) {
                 $name = $place['name'];
                 $id = $place['id'];
                 $cuisine_id = $place['cuisine_id'];
