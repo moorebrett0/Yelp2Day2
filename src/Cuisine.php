@@ -62,6 +62,12 @@
             return $restaurants;
         }
 
+        function deleteRestaurants()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM restaurant WHERE cuisine_id = '{$this->getTypeId()}';");
+        }
+
+
         function update($new_type)
         {
             $GLOBALS['DB']->exec("UPDATE cuisine SET type = '{$new_type}' WHERE id = {$this->getTypeId()};");

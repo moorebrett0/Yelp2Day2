@@ -80,6 +80,7 @@
               $this->setId($result['id']);
             }
 
+        
             static function getAll()
             {
               $returned_restaurants = $GLOBALS['DB']->query("SELECT * FROM restaurant;");
@@ -98,7 +99,7 @@
 
             static function deleteAll()
             {
-              $GLOBALS['DB']->exec("DELETE FROM restaurant *;");
+              $GLOBALS['DB']->exec("DELETE FROM restaurant *);");
             }
 
 

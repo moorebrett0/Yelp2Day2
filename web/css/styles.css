@@ -1,7 +1,13 @@
 h1 {
     text-align: center;
+    
+}
+
+.jumbotron {
+    background-size: 100% 100%;
+    background-image: url(http://www.featurepics.com/FI/Thumb300/20101215/Professional-Kitchen-1733865.jpg);
 }
 
 .container {
-    margin: 10em;
+
 }

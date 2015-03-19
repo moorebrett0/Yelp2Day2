@@ -2,7 +2,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/../web/css/styles.css" type="text/css">
+        <link rel="stylesheet" href="css/styles.css" type="text/css">
         <title>Cuisines</title>
     </head>
     <body>
@@ -13,15 +13,21 @@
             </div>
             <p><a href="/cuisines/{{ cuisines.getTypeId }}/edit">Edit cuisine</a></p>
 
+
             {% if restaurants is not empty %}
                 <p>Here are the Restaurants:</p>
                 <ul>
                     {% for place in restaurants %}
                         <li>{{ place.getName }}</li>
+                            <ul>
+                                <li>{{ place.getRating }}</li>
+                                <li>{{ place.getReview }}</li>
+                            </ul>
                     {% endfor %}
                 </ul>
 
                 <form action='/delete_restaurants' method='post'>
+                    <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisines.getTypeId() }}">
                     <button type='submit'>Clear restaurants</button>
                 </form>
 

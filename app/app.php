@@ -37,9 +37,9 @@
                 Cuisine::deleteAll();
                 return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
             });
-            //
+
             // //establish our routes and methods for cuisine twig pages
-            //
+
             $app->get("/cuisines/{id}", function($id) use ($app) {
 
                 $cuisine = Cuisine::find($id);
@@ -48,7 +48,7 @@
 
                 return $app['twig']->render('cuisine.twig', array('cuisines'=> $cuisine, 'restaurants' => $cuisine->getRestaurant()));
             });
-            //
+
             $app->post("/restaurant_add", function() use ($app) {
 
                 $cuisine_id = $_POST['cuisine_id'];
@@ -58,13 +58,11 @@
                 return $app['twig']->render('cuisine.twig', array('cuisines' => $cuisine, 'restaurants'=> $cuisine->getRestaurant()));
             });
 
-
-
-
-
             $app->post("/delete_restaurants", function() use($app){
 
-                Restaurant::deleteAll();
+                $cuisine_id = $_POST['cuisine_id'];
+                $cuisine = Cuisine::find($cuisine_id);
+                $cuisine->deleteRestaurants();
 
                 return $app['twig']->render('delete_restaurants.twig');
             });
@@ -89,10 +87,6 @@
                 $cuisine->delete();
                 return $app['twig']->render('index.twig', array('cuisines' => Cuisine::getAll()));
             });
-
-
-
-
 
 
             return $app;
