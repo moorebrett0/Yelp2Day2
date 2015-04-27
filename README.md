@@ -19,7 +19,7 @@ To edit the app, download the source code and open it in your text editor. <br /
     *Note: If you are copying any of the code to your own directories, you may need to install Composer
     in your root directory.*
 
-##Copyright (c) 2015 Connor Abdelnoor & Kyle Giard-Chase
+##Copyright (c) 2015 Connor Abdelnoor & Brett Moore
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
